@@ -48,6 +48,10 @@ class _selamatdatangState extends State<selamatdatang> {
 
     // Getting Server response into variable.
     var message = response.statusCode;
+    var datauser = response.body;
+    var hasiluser = jsonDecode(datauser);
+    var namadepan = hasiluser['nama_depan'];
+    var namabelakang = hasiluser['nama_belakang'];
 
     if (response.statusCode == 200) {
       Navigator.pushReplacement(
@@ -56,6 +60,12 @@ class _selamatdatangState extends State<selamatdatang> {
           builder: (context) => const navigasiPage(),
         ),
       );
+      print(datauser);
+      print(namadepan);
+      print(namabelakang);
+      // print(hasiluser['nama_depan']);
+      // print(hasiluser['nama_belakang']);
+
     } else {
       errorcode = false;
       print(errorcode);

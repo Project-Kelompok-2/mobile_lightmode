@@ -58,12 +58,12 @@ class _profilPageState extends State<profilPage> {
               children: [
                 ListTile(
                   dense: true,
-                  leading: const Text("Nama Panggilan",
+                  leading: const Text("Nama Lengkap",
                       style: TextStyle(fontWeight: FontWeight.w500)),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: const <Widget>[
-                      Text("David Arrozaqi",
+                      Text("Yunanta Dwi Kristanto",
                           style: TextStyle(color: Colors.grey, fontSize: 12)),
                       Icon(Icons.arrow_forward_ios_outlined),
                     ],
@@ -74,12 +74,12 @@ class _profilPageState extends State<profilPage> {
                 ),
                 ListTile(
                   dense: true,
-                  leading: const Text("Status",
+                  leading: const Text("Asal Institusi",
                       style: TextStyle(fontWeight: FontWeight.w500)),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: const <Widget>[
-                      Text("Mahasiswa",
+                      Text("Politeknik Negeri Jember",
                           style: TextStyle(color: Colors.grey, fontSize: 12)),
                       Icon(Icons.arrow_forward_ios_outlined),
                     ],
@@ -90,12 +90,12 @@ class _profilPageState extends State<profilPage> {
                 ),
                 ListTile(
                   dense: true,
-                  leading: const Text("Jenis Kelamin",
+                  leading: const Text("Kegiatan",
                       style: TextStyle(fontWeight: FontWeight.w500)),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: const <Widget>[
-                      Text("Laki-Laki",
+                      Text("Penelitian",
                           style: TextStyle(color: Colors.grey, fontSize: 12)),
                       Icon(Icons.arrow_forward_ios_outlined),
                     ],
@@ -106,12 +106,12 @@ class _profilPageState extends State<profilPage> {
                 ),
                 ListTile(
                   dense: true,
-                  leading: const Text("Usia",
+                  leading: const Text("Email",
                       style: TextStyle(fontWeight: FontWeight.w500)),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: const <Widget>[
-                      Text("19 Tahun",
+                      Text("yunanta@gmail.com",
                           style: TextStyle(color: Colors.grey, fontSize: 12)),
                       Icon(Icons.arrow_forward_ios_outlined),
                     ],
@@ -122,12 +122,12 @@ class _profilPageState extends State<profilPage> {
                 ),
                 ListTile(
                   dense: true,
-                  leading: const Text("Nomor Handphone",
+                  leading: const Text("Username",
                       style: TextStyle(fontWeight: FontWeight.w500)),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: const <Widget>[
-                      Text("081455165124",
+                      Text("yunan123",
                           style: TextStyle(color: Colors.grey, fontSize: 12)),
                       Icon(Icons.arrow_forward_ios_outlined),
                     ],
