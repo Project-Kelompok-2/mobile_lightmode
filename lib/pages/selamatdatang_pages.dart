@@ -25,7 +25,7 @@ class _selamatdatangState extends State<selamatdatang> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Future userLogin() async {
+  Future userLogin(String email, String password) async {
     HttpOverrides.global = MyHttpOverrides();
     // Showing CircularProgressIndicator.
     // setState(() {
@@ -33,8 +33,8 @@ class _selamatdatangState extends State<selamatdatang> {
     // });
 
     // Getting value from Controller
-    String email = emailController.text;
-    String password = passwordController.text;
+    // String email = emailController.text;
+    // String password = passwordController.text;
 
     // SERVER LOGIN API URL
     var url = 'https://20.20.0.245/1.%20KULIAH/MOP-Green/login.php';
@@ -42,7 +42,7 @@ class _selamatdatangState extends State<selamatdatang> {
 
     // Store all data with Param Name.
     var data = {'email': email, 'password': password};
-    var errorcode = true;
+    // var errorcode = true;
     // Starting Web API Call.
     var response = await http.post(Uri.parse(url), body: json.encode(data));
 
@@ -52,40 +52,42 @@ class _selamatdatangState extends State<selamatdatang> {
     // var hasiluser = jsonDecode(datauser);
     // var namadepan = hasiluser['nama_depan'];
     // var namabelakang = hasiluser['nama_belakang'];
+    return response.statusCode == 200;
+    // if (response.statusCode == 200) {
+    //   Navigator.pushReplacement(
+    //     context,
+    //     MaterialPageRoute(
+    //       builder: (context) => const navigasiPage(),
+    //     ),
+    //   );
+    // }
 
-    if (response.statusCode == 200) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const navigasiPage(),
-        ),
-      );
-      // print(datauser);
-      // print(namadepan);
-      // print(namabelakang);
-      // print(hasiluser['nama_depan']);
-      // print(hasiluser['nama_belakang']);
+    // print(datauser);
+    // print(namadepan);
+    // print(namabelakang);
+    // print(hasiluser['nama_depan']);
+    // print(hasiluser['nama_belakang']);
 
-    } else {
-      _showDialog(context);
-      // errorcode = false;
-      // print(errorcode);
-      // _showDialog(context) {
-      //   return showDialog(
-      //       context: context,
-      //       builder: (_) => AlertDialog(
-      //             title: Text('Error'),
-      //             content: Text('Incorrect Email or Password'),
-      //             actions: <Widget>[
-      //               ElevatedButton(
-      //                 child: Text('Close'),
-      //                 onPressed: () {
-      //                   Navigator.of(context).pop();
-      //                 },
-      //               )
-      //             ],
-      //           ));
-    }
+    // } else {
+    //   _showDialog(context);
+    //   // errorcode = false;
+    //   // print(errorcode);
+    //   // _showDialog(context) {
+    //   //   return showDialog(
+    //   //       context: context,
+    //   //       builder: (_) => AlertDialog(
+    //   //             title: Text('Error'),
+    //   //             content: Text('Incorrect Email or Password'),
+    //   //             actions: <Widget>[
+    //   //               ElevatedButton(
+    //   //                 child: Text('Close'),
+    //   //                 onPressed: () {
+    //   //                   Navigator.of(context).pop();
+    //   //                 },
+    //   //               )
+    //   //             ],
+    //   //           ));
+    // }
     //   _showDialog(context) {
     //   return showDialog(
     //       context: context,
@@ -104,8 +106,8 @@ class _selamatdatangState extends State<selamatdatang> {
 
     //   _showDialog(context);
     // }
-    print(email);
-    print(password);
+    // print(email);
+    // print(password);
 
     // Dialog error
   }
@@ -126,7 +128,7 @@ class _selamatdatangState extends State<selamatdatang> {
               ],
             ));
 
-    _showDialog(context);
+    // _showDialog(context);
   }
 
   // _showDialog(context) {
@@ -615,10 +617,80 @@ class _selamatdatangState extends State<selamatdatang> {
                                                           .width -
                                                       2 * defaultmargin,
                                                   child: ElevatedButton(
-                                                      onPressed: () {
+                                                      onPressed: () async {
                                                         try {
-                                                          userLogin();
-                                                        } catch (errorcode) {
+                                                          String useremail =
+                                                              emailController
+                                                                  .text;
+                                                          String userpassword =
+                                                              passwordController
+                                                                  .text;
+                                                          if (useremail
+                                                                  .isNotEmpty &&
+                                                              userpassword
+                                                                  .isNotEmpty) {
+                                                            bool response =
+                                                                await userLogin(
+                                                                    useremail,
+                                                                    userpassword);
+                                                            if (response) {
+                                                              Navigator
+                                                                  .pushReplacement(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          const navigasiPage(),
+                                                                ),
+                                                              );
+                                                            } else {
+                                                              showDialog(
+                                                                  context:
+                                                                      context,
+                                                                  builder: (_) =>
+                                                                      AlertDialog(
+                                                                        title: Text(
+                                                                            'Error'),
+                                                                        content:
+                                                                            Text('Email dan password salah'),
+                                                                        actions: <
+                                                                            Widget>[
+                                                                          ElevatedButton(
+                                                                            child:
+                                                                                Text('Close'),
+                                                                            onPressed:
+                                                                                () {
+                                                                              Navigator.of(context).pop();
+                                                                            },
+                                                                          )
+                                                                        ],
+                                                                      ));
+                                                            }
+                                                          } else {
+                                                            showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder: (_) =>
+                                                                    AlertDialog(
+                                                                      title: Text(
+                                                                          'Error'),
+                                                                      content: Text(
+                                                                          'Email dan password harus diisi'),
+                                                                      actions: <
+                                                                          Widget>[
+                                                                        ElevatedButton(
+                                                                          child:
+                                                                              Text('Close'),
+                                                                          onPressed:
+                                                                              () {
+                                                                            Navigator.of(context).pop();
+                                                                          },
+                                                                        )
+                                                                      ],
+                                                                    ));
+                                                          }
+                                                        } catch (err) {
+                                                          print(err);
                                                           // print(errorcode);
                                                           // print(
                                                           //     'error =  $err');
